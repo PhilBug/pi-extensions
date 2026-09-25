@@ -24,18 +24,9 @@ Set a half-written prompt aside, ask something else, then bring the draft back.
 
 | Editor state | <kbd>Ctrl</kbd>+<kbd>S</kbd> does |
 | --- | --- |
-| Has text | Stashes the text and clears the editor |
+| Has text | Stashes the text, clears the editor, and shows `› stashed` above it |
 | Empty, draft stashed | Restores the draft |
 | Empty, nothing stashed | Nothing |
-
-While a draft is stashed, a dim marker shows above the editor, on the right:
-
-```text
-                                                     › stashed
-────────────────────────────────────────────────────────────────
-❯
-────────────────────────────────────────────────────────────────
-```
 
 > [!NOTE]
 > - There is one slot. A second stash overwrites the first.
