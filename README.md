@@ -5,6 +5,7 @@ Personal extensions for the [pi](https://pi.dev) coding agent.
 | Extension | What it does |
 | --- | --- |
 | [prompt-stash](#prompt-stash) | Stash the prompt draft with <kbd>Ctrl</kbd>+<kbd>S</kbd> and restore it later, like Claude Code |
+| [save-default-model](#save-default-model) | `/model-default` saves the current model and thinking level as defaults for new sessions |
 
 ## Install
 
@@ -32,3 +33,11 @@ Set a half-written prompt aside, ask something else, then bring the draft back.
 > - There is one slot. A second stash overwrites the first.
 > - The stash lives in memory. `/reload` or a restart drops it.
 > - <kbd>Ctrl</kbd>+<kbd>S</kbd> replaces pi's built-in `app.thinking.save` in the main editor. pi warns about this on load.
+
+---
+
+## save-default-model
+
+`/model` changes the model for the current session only. Run `/model-default` afterwards to save the current model and thinking level to global `settings.json`, so new sessions start with them.
+
+This does the same as <kbd>Ctrl</kbd>+<kbd>S</kbd> in the `/model` and `/thinking` pickers, without needing that shortcut.
