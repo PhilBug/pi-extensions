@@ -5,7 +5,7 @@ Personal extensions for the [pi](https://pi.dev) coding agent.
 | Extension | What it does |
 | --- | --- |
 | [prompt-stash](#prompt-stash) | Stash the prompt draft with <kbd>Ctrl</kbd>+<kbd>S</kbd> and restore it later, like Claude Code |
-| [save-default-model](#save-default-model) | `/model-default` saves the current model and thinking level as defaults for new sessions |
+| [save-default-model](#save-default-model) | `/model-default` opens the `/model` picker and saves the choice as the default for new sessions |
 
 ## Install
 
@@ -38,6 +38,6 @@ Set a half-written prompt aside, ask something else, then bring the draft back.
 
 ## save-default-model
 
-`/model` changes the model for the current session only. Run `/model-default` afterwards to save the current model and thinking level to global `settings.json`, so new sessions start with them.
+`/model` changes the model for the current session only. `/model-default` opens the same fuzzy picker, switches to the selected model, and saves it with the current thinking level to global `settings.json`, so new sessions start with them. `/model-default <search>` prefills the search.
 
 This does the same as <kbd>Ctrl</kbd>+<kbd>S</kbd> in the `/model` and `/thinking` pickers, without needing that shortcut.
