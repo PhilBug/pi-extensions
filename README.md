@@ -31,7 +31,7 @@ Set a half-written prompt aside, ask something else, then bring the draft back.
 
 > [!NOTE]
 > - There is one slot. A second stash overwrites the first.
-> - The stash lives in memory. `/reload` or a restart drops it.
+> - The stash is persisted to `~/.pi/agent/prompt-stash.txt` (or `$PI_CODING_AGENT_DIR`), so it survives `/reload` and restarts. Last stash wins across parallel sessions.
 > - <kbd>Ctrl</kbd>+<kbd>S</kbd> replaces pi's built-in `app.thinking.save` in the main editor. pi warns about this on load.
 
 ---
