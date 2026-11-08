@@ -30,8 +30,8 @@ Set a half-written prompt aside, ask something else, then bring the draft back.
 | Empty, nothing stashed | Nothing |
 
 > [!NOTE]
-> - There is one slot. A second stash overwrites the first.
-> - The stash is persisted to `~/.pi/agent/prompt-stash.txt` (or `$PI_CODING_AGENT_DIR`), so it survives `/reload` and restarts. Last stash wins across parallel sessions.
+> - One slot per session, so drafts never leak between sessions, terminals, or projects.
+> - Slots are persisted under `~/.pi/agent/prompt-stash/` (or `$PI_CODING_AGENT_DIR`), so the draft survives `/reload`, and comes back after a restart when you resume the same session. `/new`, `/resume` of another session, and `/fork` switch slots; unused slots are pruned after 30 days.
 > - <kbd>Ctrl</kbd>+<kbd>S</kbd> replaces pi's built-in `app.thinking.save` in the main editor. pi warns about this on load.
 
 ---
