@@ -1,4 +1,9 @@
-import { getAgentDir, ModelSelectorComponent, SettingsManager, type ExtensionAPI } from "@earendil-works/pi-coding-agent";
+import {
+	type ExtensionAPI,
+	getAgentDir,
+	ModelSelectorComponent,
+	SettingsManager,
+} from "@earendil-works/pi-coding-agent";
 
 // /model only changes the session; this opens the same picker and also persists the choice as the startup default.
 export default function (pi: ExtensionAPI) {
@@ -17,20 +22,22 @@ export default function (pi: ExtensionAPI) {
 			const provider = settings.getDefaultProvider();
 			const id = settings.getDefaultModel();
 
-			const model = await ctx.ui.custom<Parameters<ExtensionAPI["setModel"]>[0] | undefined>((tui, _theme, _keys, done) => {
-				const selector = new ModelSelectorComponent(
-					tui,
-					ctx.model,
-					runtime as never,
-					[],
-					(m) => done(m),
-					() => done(undefined),
-					args.trim() || undefined,
-					(m) => done(m),
-					provider && id ? { provider, id } : undefined,
-				);
-				return selector;
-			});
+			const model = await ctx.ui.custom<Parameters<ExtensionAPI["setModel"]>[0] | undefined>(
+				(tui, _theme, _keys, done) => {
+					const selector = new ModelSelectorComponent(
+						tui,
+						ctx.model,
+						runtime as never,
+						[],
+						(m) => done(m),
+						() => done(undefined),
+						args.trim() || undefined,
+						(m) => done(m),
+						provider && id ? { provider, id } : undefined,
+					);
+					return selector;
+				},
+			);
 			if (!model) return;
 
 			if (!(await pi.setModel(model))) {

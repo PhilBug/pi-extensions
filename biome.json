@@ -1,0 +1,10 @@
+{
+	"$schema": "https://biomejs.dev/schemas/2.6.8/schema.json",
+	"files": {
+		"includes": ["**", "!**/node_modules"]
+	},
+	"formatter": {
+		"indentStyle": "tab",
+		"lineWidth": 120
+	}
+}

@@ -1,10 +1,21 @@
 {
-  "name": "pi-extensions",
-  "private": true,
-  "type": "module",
-  "keywords": ["pi-package"],
-  "license": "MIT",
-  "pi": {
-    "extensions": ["./extensions"]
-  }
+	"name": "pi-extensions",
+	"private": true,
+	"type": "module",
+	"keywords": [
+		"pi-package"
+	],
+	"license": "MIT",
+	"pi": {
+		"extensions": [
+			"./extensions"
+		]
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.6.8"
+	},
+	"scripts": {
+		"check": "biome check .",
+		"fix": "biome check --write ."
+	}
 }

@@ -2,10 +2,11 @@
 
 Personal extensions for the [pi](https://pi.dev) coding agent.
 
-| Extension | What it does |
-| --- | --- |
-| [prompt-stash](#prompt-stash) | Stash the prompt draft with <kbd>Ctrl</kbd>+<kbd>S</kbd> and restore it later, like Claude Code |
-| [save-default-model](#save-default-model) | `/model-default` opens the `/model` picker and saves the choice as the default for new sessions |
+| Extension                                 | What it does                                                                                       |
+| ----------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| [prompt-stash](#prompt-stash)             | Stash the prompt draft with <kbd>Ctrl</kbd>+<kbd>S</kbd> and restore it later, like Claude Code    |
+| [save-default-model](#save-default-model) | `/model-default` opens the `/model` picker and saves the choice as the default for new sessions    |
+| [hide-bedrock](#hide-bedrock)             | Hides the Amazon Bedrock provider that an ambient `AWS_PROFILE` turns on, and a few retired models |
 
 ## Install
 
@@ -23,11 +24,11 @@ Update with `pi update`.
 
 Set a half-written prompt aside, ask something else, then bring the draft back.
 
-| Editor state | <kbd>Ctrl</kbd>+<kbd>S</kbd> does |
-| --- | --- |
-| Has text | Stashes the text, clears the editor, and shows `› stashed` above it |
-| Empty, draft stashed | Restores the draft |
-| Empty, nothing stashed | Nothing |
+| Editor state           | <kbd>Ctrl</kbd>+<kbd>S</kbd> does                                   |
+| ---------------------- | ------------------------------------------------------------------- |
+| Has text               | Stashes the text, clears the editor, and shows `› stashed` above it |
+| Empty, draft stashed   | Restores the draft                                                  |
+| Empty, nothing stashed | Nothing                                                             |
 
 > [!NOTE]
 > - One slot per session, so drafts never leak between sessions, terminals, or projects.
@@ -41,3 +42,22 @@ Set a half-written prompt aside, ask something else, then bring the draft back.
 `/model` changes the model for the current session only. `/model-default` opens the same fuzzy picker, switches to the selected model, and saves it with the current thinking level to global `settings.json`, so new sessions start with them. `/model-default <search>` prefills the search.
 
 This does the same as <kbd>Ctrl</kbd>+<kbd>S</kbd> in the `/model` and `/thinking` pickers, without needing that shortcut.
+
+---
+
+## hide-bedrock
+
+pi turns on its built-in Amazon Bedrock provider whenever `AWS_PROFILE` is set, which fills `/model` with Bedrock models. This extension registers Bedrock with an empty model list, so they disappear.
+
+It also:
+
+- hides the retired `claude-fable-5-1` model from the `anthropic` and `github-copilot` providers (edit `HIDDEN_MODEL_IDS` to change the list);
+- rebuilds the Ctrl+P model cycle from `enabledModels` on `/reload`, which pi does not do on its own.
+
+## Development
+
+```bash
+bun install
+bun run check   # Biome lint + format check, same as CI
+bun run fix     # apply fixes and formatting
+```
