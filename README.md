@@ -7,6 +7,7 @@ Personal extensions for the [pi](https://pi.dev) coding agent.
 | [prompt-stash](#prompt-stash)             | Stash the prompt draft with <kbd>Ctrl</kbd>+<kbd>S</kbd> and restore it later, like Claude Code    |
 | [save-default-model](#save-default-model) | `/model-default` opens the `/model` picker and saves the choice as the default for new sessions    |
 | [hide-bedrock](#hide-bedrock)             | Hides the Amazon Bedrock provider that an ambient `AWS_PROFILE` turns on, and a few retired models |
+| [cmux-meta](#cmux-meta)                   | Read existing cmux panels, compare their status, and draft replies from a META workspace           |
 
 ## Install
 
@@ -14,9 +15,9 @@ Personal extensions for the [pi](https://pi.dev) coding agent.
 pi install git:github.com/PhilBug/pi-extensions
 ```
 
-Run `/reload` in pi afterwards. To install a single extension, copy its file from [`extensions/`](extensions/) into `~/.pi/agent/extensions/`.
+Run `/reload` in pi afterwards. To select individual resources, use [Pi package filters](https://pi.dev/docs/latest/packages#select-package-resources).
 
-Update with `pi update`.
+Update with `pi update git:github.com/PhilBug/pi-extensions`.
 
 ---
 
@@ -54,10 +55,17 @@ It also:
 - hides the retired `claude-fable-5-1` model from the `anthropic` and `github-copilot` providers (edit `HIDDEN_MODEL_IDS` to change the list);
 - rebuilds the Ctrl+P model cycle from `enabledModels` on `/reload`, which pi does not do on its own.
 
+## cmux-meta
+
+Run `/skill:cmux-meta status` from a META workspace and confirm the panels to track. The skill requires cmux and Bun 1.4.5 or later. It reads panels without sending input and stores the approved targets and status summaries locally. `changes` shows meaningful differences; `reply` drafts text for you to copy.
+
+Installation does not start a timer. To enable one, follow the [schedule reference](skills/cmux-meta/references/schedule.md). It requires a `pi-subagents` build with `schedule_precheck` and a restricted observer that cannot fall back to a more privileged agent.
+
 ## Development
 
 ```bash
 bun install
 bun run check   # Biome lint + format check, same as CI
 bun run fix     # apply fixes and formatting
+bun test       # run the cmux-meta fixture tests
 ```
